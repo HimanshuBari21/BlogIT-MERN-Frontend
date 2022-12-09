@@ -33,12 +33,13 @@ const CreateBlog = (props) => {
             console.log(response);
             if (response.data.errMessage) {
                 setBlogStatus([true, response.data.errMessage])
+
             }
             else {
                 setBlogStatus([true, "Published"])
                 setTimeout(() => {
-                    window.location = "/createBlog";
-                }, 1000);
+                    window.location = "/myBlogs";
+                }, 2000);
             }
         })
     }
@@ -49,6 +50,7 @@ const CreateBlog = (props) => {
                 setUserData(response.data)
                 console.log(response.data);
                 setIsLogged(true)
+
             }).catch((error) => {
                 console.log(error);
                 setIsLogged(false)

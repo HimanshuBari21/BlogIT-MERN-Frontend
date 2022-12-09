@@ -54,9 +54,14 @@ const Profile = (props) => {
 
         axios.post('http://localhost:5000/imgUpload', formData).then((res) => {
             console.log(res);
+            setTimeout(() => {
+                window.location = "/profile"
+            }, 2000);
         }).catch((err) => {
             console.log(err);
         })
+
+
 
     }
 
@@ -70,11 +75,11 @@ const Profile = (props) => {
             <br />
             <br />
             <center>
-                <img className="img-fluid" alt='profile' src={'http://localhost:5000/images/' + userData?.profilePicCode} style={{ borderRadius: "50%", height: "200px" }} />
-                <p>{userData.profilePicCode}</p>
+                <img className="img-fluid" alt='profile' src={'http://localhost:5000/images/' + userData?.profilePicCode} style={{ borderRadius: "4.5%", height: "clamp(200px, 260px, 400px)", width: "clamp(200px, 260px, 400px)", objectFit: 'cover' }} />
                 <form encType='multipart/form-data' onSubmit={handleSubmit}>
-                    <input type="file" name="profile" accept='image/*' onChange={handlePhoto} />
-                    <input type="submit" value="Update" />
+                    <input type="file" name="profile" accept='image/*' onChange={handlePhoto} className="form-control w-25 m-2" />
+
+                    <input type="submit" value="Update" className='form-control w-25 m-2 bg-primary text-light' />
                 </form>
             </center>
             <div className="container">

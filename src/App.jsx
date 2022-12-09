@@ -20,22 +20,7 @@ import axios from 'axios';
 const App = () => {
 
     const [localToken, setLocalToken] = useState(localStorage.getItem("secret"))
-    // const [userData, setUserData] = useState({})
-    // const [himanshu, setHimanshu] = useState("Himanshu Bari")
 
-    // useEffect(() => {
-    //     const getData = () => {
-    //         axios.post('http://localhost:5000/profileData', { id: localToken }).then((response) => {
-
-    //             setUserData(response.data)
-    //             console.log(response.data);
-
-    //         }).catch((error) => {
-    //             console.log(error);
-    //         });
-    //     }
-    //     getData()
-    // }, [localToken])
 
     return (
         <>

@@ -9,8 +9,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import Button from '@mui/material/Button'
-import { BsFillEyeFill } from 'react-icons/bs'
+import { BsFillEyeFill, BsFileBinary } from 'react-icons/bs'
+import { MdDelete } from 'react-icons/md'
 import NavBar from '../Components/NavBar';
+
 
 
 const MyBlogs = (props) => {
@@ -30,6 +32,21 @@ const MyBlogs = (props) => {
         }
         getMyBlogs()
     }, [props.token])
+
+    const DeleteBlog = (id) => {
+        if (window.confirm("Are you sure to delete this Blog")) {
+            axios.post("http://localhost:5000/deleteBlog", { id }).then((res) => {
+                console.log(res);
+                window.alert(res.data.msg)
+                setTimeout(() => {
+                    window.location = "/myBlogs"
+                }, 2000);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
+
+    }
 
     var DateOfBlog = new Date(myBlogs.dateOfPublish)
 
@@ -65,10 +82,26 @@ const MyBlogs = (props) => {
                                         return (
                                             <>
                                                 <TableRow>
-                                                    <TableCell title={blog.content}>{blog.title}</TableCell>
-                                                    <TableCell>Date: {Date(DateOfBlog.getTime()).substring(4, 15)}</TableCell>
-                                                    <TableCell><Link title='View' to={`blog/${blog._id}`}><Button variant="contained"><BsFillEyeFill color='white' />
-                                                    </Button></Link ></TableCell>
+                                                    <TableCell title={blog.content}>
+                                                        {blog.title}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        Date: {Date(DateOfBlog.getTime()).substring(4, 25)}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <Link title='View' to={`blog/${blog._id}`}>
+                                                            <Button variant="contained">
+                                                                <BsFillEyeFill color='white' />
+                                                            </Button>
+                                                        </Link >
+
+                                                        <Button variant="contained" color="error" title={"Delete"} className='mx-2' name={blog._id} onClick={() => DeleteBlog(blog._id)}>
+                                                            <MdDelete color='white' />
+                                                        </Button>
+
+
+
+                                                    </TableCell>
                                                 </TableRow>
                                             </>
                                         )
