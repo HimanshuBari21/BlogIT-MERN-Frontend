@@ -5,8 +5,13 @@
 /.pnp
 .pnp.js
 
+#backend
+/BACKEND/node_modules
+
 # testing
 /coverage
+/testing.jsx
+/testing.js
 
 # production
 /build
