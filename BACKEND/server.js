@@ -6,8 +6,6 @@ const bodyParser = require("body-parser");
 const fs = require('fs');
 
 const path = require('path');
-
-const wifi = require('node-wifi');
 // const cookieParser = require("cookie-parser");
 // const sessions = require('express-session');
 
@@ -27,7 +25,13 @@ app.use(bodyParser.json());
 
 app.use(express.static('public'));
 
-mongoose.connect("mongodb+srv://Himanshu21:Qwaszx%40123@cluster0.66ymbkc.mongodb.net/HimanshuBari");
+
+try {
+    mongoose.connect("mongodb+srv://Himanshu21:Qwaszx%40123@cluster0.66ymbkc.mongodb.net/HimanshuBari");
+} catch (error) {
+    console.log(error);
+}
+
 
 app.get('/', (req, res) => {
     res.send("Server Running...")
