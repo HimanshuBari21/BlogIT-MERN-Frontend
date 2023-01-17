@@ -7,6 +7,8 @@
 
 # testing
 /coverage
+/testing.jsx
+/testing.js
 
 # production
 /build
